@@ -4,45 +4,44 @@
 // Configuration - UPDATE THIS
 const SHEET_NAME = 'Teaching Activities'; // Name of your sheet tab
 
-// Column mapping - adjust based on your sheet structure
+// Column mapping
 const COLUMNS = {
   entryDate: 1,        // A
   activityType: 2,     // B
   academicYear: 3,     // C
   status: 4,           // D
   institution: 5,      // E
-  startDate: 7,        // G
-  endDate: 8,          // H
-  title: 9,            // I
-  course: 10,          // J
-  learnerLevels: 11,   // K
-  learnerNames: 12,    // L
-  learnerLevel: 13,    // M
-  learnerYear: 14,     // N
-  location: 15,        // O
-  hours: 16,           // P
-  hoursPerSession: 17, // Q
-  numLearners: 18,     // R
-  numSessions: 19,     // S
-  numStudents: 20,     // T
-  supervisionType: 21, // U
-  unitType: 22,        // V
-  recurring: 23,       // W
-  roundsType: 24,      // X
-  studentName: 25,     // Y
-  role: 26,            // Z
-  degree: 27,          // AA
-  projectTitle: 28,    // AB
-  projectStatus: 29,   // AC
-  studentInstitution: 30, // AD
-  collaborators: 31,   // AE
-  studentAwards: 32,   // AF
-  examType: 33,        // AG
-  otherType: 34,       // AH
-  completionDate: 35,  // AI
-  evaluation: 36,      // AJ
-  description: 37,     // AK
-  notes: 38            // AL
+  startDate: 6,        // F
+  endDate: 7,          // G
+  title: 8,            // H
+  course: 9,           // I
+  learnerLevels: 10,   // J
+  learnerNames: 11,    // K
+  learnerYear: 12,     // L
+  location: 13,        // M
+  hours: 14,           // N
+  hoursPerSession: 15, // O
+  numLearners: 16,     // P
+  numSessions: 17,     // Q
+  numStudents: 18,     // R
+  supervisionType: 19, // S
+  unitType: 20,        // T
+  recurring: 21,       // U
+  roundsType: 22,      // V
+  studentName: 23,     // W
+  role: 24,            // X
+  degree: 25,          // Y
+  projectTitle: 26,    // Z
+  projectStatus: 27,   // AA
+  studentInstitution: 28, // AB
+  collaborators: 29,   // AC
+  studentAwards: 30,   // AD
+  examType: 31,        // AE
+  otherType: 32,       // AF
+  completionDate: 33,  // AG
+  evaluation: 34,      // AH
+  description: 35,     // AI
+  notes: 36            // AJ
 };
 
 // Handle POST requests from the web form
@@ -110,14 +109,12 @@ function setupSheet(sheet) {
     'Academic Year',
     'Status',
     'Institution',
-    'Date',
     'Start Date',
     'End Date',
     'Title',
     'Course/Program',
     'Learner Levels',
     'Learner Names',
-    'Learner Level',
     'Learner Year',
     'Location',
     'Hours',
@@ -163,9 +160,9 @@ function setupSheet(sheet) {
   sheet.setColumnWidth(3, 100); // Academic Year
   sheet.setColumnWidth(4, 100); // Status
   sheet.setColumnWidth(5, 200); // Institution
-  sheet.setColumnWidth(9, 250); // Title
-  sheet.setColumnWidth(37, 300); // Description
-  sheet.setColumnWidth(38, 200); // Notes
+  sheet.setColumnWidth(8, 250); // Title
+  sheet.setColumnWidth(35, 300); // Description
+  sheet.setColumnWidth(36, 200); // Notes
 }
 
 // Format a data row
@@ -181,13 +178,13 @@ function formatRow(sheet, rowNumber) {
   range.setBorder(true, true, true, true, false, false);
   
   // Format date columns
-  const dateColumns = [1, 6, 7, 8, 35]; // Entry Date, Date, Start Date, End Date, Completion Date
+  const dateColumns = [1, 6, 7, 33]; // Entry Date, Start Date, End Date, Completion Date
   dateColumns.forEach(col => {
     sheet.getRange(rowNumber, col).setNumberFormat('yyyy-mm-dd');
   });
   
   // Format number columns
-  const numberColumns = [16, 17, 18, 19, 20]; // Hours, Hours Per Session, Learners, Sessions, Students
+  const numberColumns = [14, 15, 16, 17, 18]; // Hours, Hours Per Session, Learners, Sessions, Students
   numberColumns.forEach(col => {
     sheet.getRange(rowNumber, col).setNumberFormat('0.0');
   });
@@ -217,7 +214,7 @@ function createSummarySheet() {
   
   // You can add QUERY or PIVOT formulas here to summarize the data
   // Example:
-  // =QUERY('Teaching Activities'!A:Z, "SELECT C, B, SUM(P), SUM(R), COUNT(B) WHERE C IS NOT NULL GROUP BY C, B ORDER BY C, B", 1)
+  // =QUERY('Teaching Activities'!A:Z, "SELECT C, B, SUM(N), SUM(P), COUNT(B) WHERE C IS NOT NULL GROUP BY C, B ORDER BY C, B", 1)
 }
 
 // Test function - run this to verify the script works
@@ -228,7 +225,8 @@ function testWrite() {
     academicYear: '2024-2025',
     status: 'Completed',
     institution: 'University of Toronto',
-    date: '2024-10-01',
+    startDate: '2024-10-01',
+    endDate: '2024-10-01',
     title: 'Test Lecture',
     location: 'Main Auditorium',
     hours: 2,

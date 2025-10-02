@@ -1,6 +1,6 @@
 // Configuration
 const CONFIG = {
-    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzBZJbzV687UQFxRMjYIDAXS-odukDu5wcX_b0dqEqisMFsmPbqXbBS5eNebh7fsEApjQ/exec'
+    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycby2XOFLpw5lcKaWxRV74UX6DlaOkF7oXZ2UxO7eXJXEhzzFZa84MwMtRFh9yEeLdsZINQ/exec'
 };
 
 // Activity type definitions

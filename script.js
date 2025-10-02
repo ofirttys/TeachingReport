@@ -149,6 +149,7 @@ function createLectureFields() {
                 <label>Start Date *</label>
                 <input type="date" name="startDate" required>
             </div>
+
             <div class="form-group">
                 <label>End Date</label>
                 <input type="date" name="endDate">
@@ -229,7 +230,7 @@ function createClinicalFields() {
             </div>
 
             <div class="form-group">
-                <label>End Date (if different)</label>
+                <label>End Date</label>
                 <input type="date" name="endDate">
             </div>
         </div>
@@ -248,19 +249,21 @@ function createClinicalFields() {
             <input type="text" name="learnerNames" required placeholder="e.g., Dr. Jane Smith (comma-separated if multiple)">
         </div>
 
-        <div class="form-row">
-            <div class="form-group">
-                <label>Learner Level *</label>
-                <select name="learnerLevel" required>
-                    <option value="">Select level...</option>
-                    ${learnerLevels.map(level => `<option value="${level}">${level}</option>`).join('')}
-                </select>
+        <div class="form-group">
+            <label>Learner Level *</label>
+            <div class="checkbox-group">
+                ${learnerLevels.map(level => `
+                    <label class="checkbox-label">
+                        <input type="radio" name="learnerLevels" value="${level}" required>
+                        ${level}
+                    </label>
+                `).join('')}
             </div>
+        </div>
 
-            <div class="form-group">
-                <label>Year (optional)</label>
-                <input type="text" name="learnerYear" placeholder="e.g., PGY-6">
-            </div>
+        <div class="form-group">
+            <label>Learner Year (optional)</label>
+            <input type="text" name="learnerYear" placeholder="e.g., PGY-6, R3, CC3">
         </div>
 
         <div class="form-group">
@@ -329,7 +332,7 @@ function createRoundsFields() {
             </div>
 
             <div class="form-group">
-                <label>End Date (if different)</label>
+                <label>End Date</label>
                 <input type="date" name="endDate">
             </div>
         </div>
@@ -482,6 +485,7 @@ function createExamFields() {
                 <label>Start Date *</label>
                 <input type="date" name="startDate" required>
             </div>
+
             <div class="form-group">
                 <label>End Date</label>
                 <input type="date" name="endDate">
@@ -519,10 +523,14 @@ function createExamFields() {
 
         <div class="form-group">
             <label>Learner Level *</label>
-            <select name="learnerLevel" required>
-                <option value="">Select level...</option>
-                ${learnerLevels.map(level => `<option value="${level}">${level}</option>`).join('')}
-            </select>
+            <div class="checkbox-group">
+                ${learnerLevels.map(level => `
+                    <label class="checkbox-label">
+                        <input type="radio" name="learnerLevels" value="${level}" required>
+                        ${level}
+                    </label>
+                `).join('')}
+            </div>
         </div>
 
         <div class="form-row">
@@ -566,6 +574,7 @@ function createOtherFields() {
                 <label>Start Date *</label>
                 <input type="date" name="startDate" required>
             </div>
+
             <div class="form-group">
                 <label>End Date</label>
                 <input type="date" name="endDate">
@@ -611,7 +620,7 @@ async function handleSubmit(e) {
     // Handle regular fields
     for (let [key, value] of formDataObj.entries()) {
         if (key === 'learnerLevels') {
-            // Handle checkboxes - collect all values
+            // Handle checkboxes/radios - collect all values
             if (!data[key]) data[key] = [];
             data[key].push(value);
         } else {
@@ -624,6 +633,7 @@ async function handleSubmit(e) {
         data.learnerLevels = data.learnerLevels.join(', ');
     }
 
+    // Auto-fill endDate if not provided
     if (data.startDate && !data.endDate) {
         data.endDate = data.startDate;
     }

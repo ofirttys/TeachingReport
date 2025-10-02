@@ -11,7 +11,6 @@ const COLUMNS = {
   academicYear: 3,     // C
   status: 4,           // D
   institution: 5,      // E
-  date: 6,             // F
   startDate: 7,        // G
   endDate: 8,          // H
   title: 9,            // I

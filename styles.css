@@ -187,7 +187,8 @@ textarea {
     font-size: 14px;
 }
 
-.checkbox-label input[type="checkbox"] {
+.checkbox-label input[type="checkbox"],
+.checkbox-label input[type="radio"] {
     width: auto;
     margin-right: 8px;
     cursor: pointer;

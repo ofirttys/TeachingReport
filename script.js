@@ -231,10 +231,8 @@ function createClinicalFields() {
         <div class="form-group">
             <label>Supervision Type *</label>
             <select name="supervisionType" required>
-                <option value="">Select type...</option>
-                <option value="Clinic Supervisor">Clinic Supervisor</option>
-                <option value="Consult Attending">Consult Attending</option>
-                <option value="Operating Room Supervisor">Operating Room Supervisor</option>
+                <option value="Clinic Supervisor" selected>Clinic Supervisor</option>
+                <option value="Clinic (Survivorship) Supervisor">Clinic (Survivorship) Supervisor</option>
                 <option value="Procedures Supervisor">Procedures Supervisor</option>
             </select>
         </div>

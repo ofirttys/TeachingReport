@@ -144,9 +144,15 @@ function createCommonFields() {
 function createLectureFields() {
     const div = document.createElement('div');
     div.innerHTML = `
-        <div class="form-group">
-            <label>Date *</label>
-            <input type="date" name="date" required>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Start Date *</label>
+                <input type="date" name="startDate" required>
+            </div>
+            <div class="form-group">
+                <label>End Date</label>
+                <input type="date" name="endDate">
+            </div>
         </div>
 
         <div class="form-group">
@@ -471,9 +477,15 @@ function createResearchFields() {
 function createExamFields() {
     const div = document.createElement('div');
     div.innerHTML = `
-        <div class="form-group">
-            <label>Date *</label>
-            <input type="date" name="date" required>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Start Date *</label>
+                <input type="date" name="startDate" required>
+            </div>
+            <div class="form-group">
+                <label>End Date</label>
+                <input type="date" name="endDate">
+            </div>
         </div>
 
         <div class="form-group">
@@ -549,9 +561,15 @@ function createOtherFields() {
             </select>
         </div>
 
-        <div class="form-group">
-            <label>Date *</label>
-            <input type="date" name="date" required>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Start Date *</label>
+                <input type="date" name="startDate" required>
+            </div>
+            <div class="form-group">
+                <label>End Date</label>
+                <input type="date" name="endDate">
+            </div>
         </div>
 
         <div class="form-group">
@@ -604,6 +622,10 @@ async function handleSubmit(e) {
     // Join learner levels if it's an array
     if (Array.isArray(data.learnerLevels)) {
         data.learnerLevels = data.learnerLevels.join(', ');
+    }
+
+    if (data.startDate && !data.endDate) {
+        data.endDate = data.startDate;
     }
 
     console.log('Submitting data:', data);

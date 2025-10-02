@@ -126,8 +126,7 @@ function createCommonFields() {
         <div class="form-group">
             <label>Status *</label>
             <select name="status" required>
-                <option value="">Select status...</option>
-                <option value="Completed">Completed</option>
+                <option value="Completed" selected>Completed</option>
                 <option value="Ongoing">Ongoing</option>
                 <option value="Planned">Planned</option>
             </select>
